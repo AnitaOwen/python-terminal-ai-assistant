@@ -1,5 +1,6 @@
 require("dotenv").config()
 const readline = require('readline')
+const fs = require('fs')
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
@@ -40,7 +41,6 @@ async function startChat(userInput) {
         }
     } catch (error) {
         console.log("\nWhoops! \nSomething went wrong. Please try asking me another question.")
-        
     }
 }
 
@@ -48,6 +48,8 @@ async function processInput(){
     rl.question("\nType your question here or type 'quit' to exit: ", async (input) => {
         if (input.toLowerCase() === 'quit') {
             console.log("\nExiting...\n")
+            // save chat history to file
+            // fs.writeFileSync('chatHistory.json', JSON.stringify(chatHistory, null, 2))
             rl.close()
         } else {
             console.log("\nGenerating...\n")
